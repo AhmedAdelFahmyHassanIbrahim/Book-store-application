@@ -22,7 +22,7 @@ def view():
     connection.close()
     return rows
 
-def search(self,title="", author="" , year="" , isbn=""):
+def search(title="", author="" , year="" , isbn=""):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM book WHERE title=? OR author=? OR year=? OR isbn=?" , (title,author,year , isbn))
@@ -30,14 +30,14 @@ def search(self,title="", author="" , year="" , isbn=""):
     connection.close()
     return rows
 
-def delete(self , id):
+def delete(id):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
     cursor.execute("DELETE FROM book WHERE id = ?" , (id,))
     connection.commit()
     connection.close()
 
-def update(self , id , title , author , year ,  isbn):
+def update(id , title , author , year ,  isbn):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
     cursor.execute("UPDATE book SET title = ? , author = ? , year = ? , isbn = ? WHERE ID = ?", (title , author, year , isbn, id))
